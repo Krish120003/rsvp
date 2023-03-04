@@ -6,6 +6,7 @@ import Balancer from "react-wrap-balancer";
 
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
+import { ModeToggle } from "@/components/mode-toggle";
 
 const Home: NextPage = () => {
   return (
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
       <main className="px-4 py-2">
         <header className="flex items-center justify-between border-b border-slate-500 pb-2">
           <h2>River</h2>
+          <ModeToggle />
           <Button onClick={() => signIn()}>Sign in</Button>
         </header>
         <div className="px-16">
