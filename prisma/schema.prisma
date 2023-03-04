@@ -13,6 +13,7 @@ datasource db {
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url      = env("DATABASE_URL")
 }
+
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
@@ -20,12 +21,12 @@ model Account {
     type              String
     provider          String
     providerAccountId String
-    refresh_token     String?  @db.Text
-    access_token      String?  @db.Text
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
     expires_at        Int?
     token_type        String?
     scope             String?
-    id_token          String?  @db.Text
+    id_token          String? @db.Text
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -48,6 +49,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    Event         Event[]
 }
 
 model VerificationToken {
@@ -56,4 +58,28 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Event {
+    id          String     @id @unique @default(cuid())
+    name        String
+    description String
+    startTime   DateTime
+    endTime     DateTime?
+    location    String
+    image       String?
+    slug        String     @unique
+    creatorId   String
+    createdAt   DateTime   @default(now())
+    updatedAt   DateTime   @updatedAt
+    attendees   Attendee[]
+    creator     User       @relation(fields: [creatorId], references: [id])
+}
+
+model Attendee {
+    id      String @id @default(cuid())
+    eventId String
+    name    String
+    email   String
+    event   Event  @relation(fields: [eventId], references: [id])
 }
