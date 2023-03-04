@@ -4,6 +4,7 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "@/utils/api";
+import { Input } from "@/components/ui/Input";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -50,6 +51,7 @@ const Home: NextPage = () => {
             </p>
             <AuthShowcase />
           </div>
+          <div className="bg-white"><Input /></div>
         </div>
       </main>
     </>
