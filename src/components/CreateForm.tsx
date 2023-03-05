@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Input } from "./Input";
-import { Button } from "./Button";
+import { Input } from "./ui/Input";
+import { Button } from "./ui/Button";
 
 type FormValues = {
   name: string;
