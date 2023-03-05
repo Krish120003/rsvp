@@ -1,10 +1,21 @@
 import { type NextPage } from "next";
-import { Prisma, Event } from "@prisma/client";
+import { Event } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import { prisma } from "@/server/db";
+
+interface EventDetails {
+  name: string;
+  description: string;
+  status: string;
+  startTime: Date;
+  endTime: Date;
+  location: string;
+  slug: string;
+}
 
 interface EventPageProps {
-  event: Event;
+  event: EventDetails;
 }
 
 const EventPage: NextPage<EventPageProps> = (props) => {
@@ -32,19 +43,31 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   const { slug } = context.params;
 
-  const temp: Event = {
-    id: "1",
-    name: "Test Event",
-    description: "This is a test event.",
-    slug: "test-event",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    creatorId: "1",
-    endTime: new Date(),
-    startTime: new Date(),
-    location: "Test Location",
-    image: "https://picsum.photos/200",
-    status: "ACTIVE",
+  if (typeof slug !== "string") {
+    return {
+      notFound: true,
+    };
+  }
+
+  const event = await prisma.event.findUnique({
+    where: {
+      slug: slug,
+    },
+  });
+
+  if (!event) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const reshapedEvent: EventDetails = {
+    name: event.name,
+    description: event.description,
+    status: event.status,
+    startTime: event.startTime,
+    endTime: event.endTime,
+    location: event.location,
   };
 
   return {
