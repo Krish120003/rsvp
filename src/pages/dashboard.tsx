@@ -11,6 +11,7 @@ import EventCard from "@/components/ui/EventCard";
 import { api } from "@/utils/api";
 import AlertDialogEvent from "@/components/ui/AlertDialogEvent";
 import { useState } from "react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 
 const NoEvents: React.FC = () => {
   return (
@@ -45,18 +46,28 @@ const Dashboard: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="w-full px-4 py-2">
-        <header className="flex items-center justify-between pb-2 border-b border-slate-500">
+        <header className="flex items-center justify-between pb-2 border-b h-14 border-slate-500">
           <Link href="/">River</Link>
-          <AlertDialogEvent />
         </header>
         <div className="w-full px-8 py-4 h-max">
-          <h1 className="pt-6 text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-5xl">
+          <h1 className="pt-12 text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-5xl">
             Your Events
           </h1>
           <p className="w-full py-2 text-xl flex-box text-slate-700 dark:text-slate-400">
             Welcome to your event dashboard. View your current, drafted, and
             archived events.
           </p>
+          <div className="flex items-center justify-between pr-4 h-14 border-slate-500">
+            <Tabs defaultValue="active" className="w-[400px]">
+              <TabsList>
+                <TabsTrigger value="active">Active</TabsTrigger>
+                <TabsTrigger value="inactive">Inactive</TabsTrigger>
+                <TabsTrigger value="drafts">Drafts</TabsTrigger>
+                <TabsTrigger value="archived">Archived</TabsTrigger>
+              </TabsList>
+            </Tabs>
+            <AlertDialogEvent />
+          </div>
           <div className="py-8">{events ? eventCards : <NoEvents />}</div>
         </div>
       </main>
