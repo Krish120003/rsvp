@@ -31,7 +31,7 @@ const Dashboard: NextPage = () => {
             Welcome to your event dashboard. View your current, drafted, and
             archived events.
           </p>
-          <div className="py-16">
+          <div className="py-8">
             <EventCard
               name="string"
               description="EE"
