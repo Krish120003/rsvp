@@ -25,8 +25,11 @@ const EventPage: NextPage<EventPageProps> = (props) => {
       <Head>
         <title>{`${props.event.name} - River`}</title>
       </Head>
-      <main className="w-full px-4 py-2">
-        <h1>{props.event.name}</h1>
+      <main className="flex h-full items-center justify-center">
+        <div className="max-w-2xl p-4">
+          <h1 className="text-4xl font-bold">{props.event.name}</h1>
+          <p className="text-md">{props.event.description}</p>
+        </div>
       </main>
     </>
   );
@@ -68,11 +71,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     startTime: event.startTime,
     endTime: event.endTime,
     location: event.location,
+    slug: event.slug,
   };
 
   return {
     props: {
-      event: temp,
+      event: reshapedEvent,
     },
   };
 };
