@@ -51,7 +51,7 @@ const AlertDialogEvent = () => {
                   description: formData?.description,
                   startTime: new Date(formData?.sttime),
                   location: formData?.location,
-                  slug: formData?.location,
+                  slug: formData?.slug,
                 });
               } catch (e) {
                 console.error(e);
