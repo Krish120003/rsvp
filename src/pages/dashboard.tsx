@@ -9,6 +9,19 @@ import { Button } from "@/components/ui/Button";
 import { ModeToggle } from "@/components/mode-toggle";
 // import { Event } from "@/components/ui/Event";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
+
 const Dashboard: NextPage = () => {
   return (
     <>
@@ -21,7 +34,7 @@ const Dashboard: NextPage = () => {
         <header className="flex items-center justify-between border-b border-slate-500 pb-2">
           <h2>River</h2>
           <ModeToggle />
-          <Button onClick={() => signIn()}>Create Event</Button>
+          <Button onClick={() => }>Create Event</Button>
         </header>
         <div className="h-max w-full px-8 py-4">
           <h1 className="text-2xld pt-6 font-bold lg:text-4xl">Your Events</h1>
