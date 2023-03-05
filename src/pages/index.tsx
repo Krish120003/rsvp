@@ -7,6 +7,9 @@ import Balancer from "react-wrap-balancer";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { ModeToggle } from "@/components/mode-toggle";
+import { Icons } from "@/components/icons";
+
+import Image from "next/image";
 
 const Home: NextPage = () => {
   return (
@@ -22,12 +25,21 @@ const Home: NextPage = () => {
           <ModeToggle />
           <Button onClick={() => signIn()}>Sign in</Button>
         </header>
-        <div className="px-16">
-          <img
-            src="https://illustrations.popsy.co/white/engineer.svg"
+        <div className="px-28">
+          <Image
+            src="/assets/engineer-light.svg"
             alt="notion style engineer ready to manage their events"
-            className="w-1/3 py-4"
-          />
+            width={400}
+            height={400}
+            className="px-5 dark:hidden"
+          ></Image>
+          <Image
+            src="/assets/engineer-dark.svg"
+            alt="notion style engineer ready to manage their events"
+            width={400}
+            height={400}
+            className="hidden px-5 dark:block"
+          ></Image>
           <h1 className="scroll-m-20 py-4 text-4xl font-extrabold tracking-tight lg:text-5xl">
             Event Management.
             <br />
