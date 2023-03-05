@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "./ui/Input";
 import { Button } from "./ui/Button";
 
 type FormValues = {
-  name: string;
+  eventname: string;
   description: string;
   sttime: string;
   endtime: string;
   slug: string;
+  location: string;
 };
 
-function MyForm() {
+function MyForm({ updater }) {
   const { register, handleSubmit, watch } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
 
@@ -23,32 +24,51 @@ function MyForm() {
     setLabelValue(event.target.value);
   };
 
+  useEffect(() => {
+    updater(watch());
+  }, [watch()]);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-      <label htmlFor="name" className="">
+      <label htmlFor="eventname" className="">
         Name
       </label>
-      <Input type="text" id="name" {...register("name")} />
+      <Input type="text" id="eventname" {...register("eventname")} required />
       <label htmlFor="description" className="">
         Description
       </label>
-      <Input type="text" id="description" {...register("description")} />
+      <Input
+        type="text"
+        id="description"
+        {...register("description")}
+        required
+      />
+      <label htmlFor="location">Location</label>
+      <Input type="text" id="location" {...register("location")} required />
       <label htmlFor="sttime" className="">
         Start time
       </label>
       <div className="flex">
-        <Input type="date" id="sttime" {...register("sttime")} />
-        <Input type="time" {...register("sttime")}></Input>
+        <Input
+          type="datetime-local"
+          id="sttime"
+          {...register("sttime")}
+          required
+        />
       </div>
       <label htmlFor="endtime" className="">
         End time
       </label>
       <div className="flex">
-        <Input type="date" id="endtime" {...register("endtime")} />
-        <Input type="time" {...register("endtime")} />
+        <Input
+          type="datetime-local"
+          id="endtime"
+          {...register("endtime")}
+          required
+        />
       </div>
       <div>
-        <label htmlFor="my-input">
+        <label htmlFor="slug">
           URL{" "}
           <span className="opacity-40">
             https://rsvp-river.vercel.app/event/
@@ -56,12 +76,13 @@ function MyForm() {
         </label>
         <span>{labelValue}</span>
       </div>
-
       <Input
         type="text"
-        id="my-input"
+        id="slug"
         value={inputValue}
+        {...register("slug")}
         onChange={handleInputChange}
+        required
       />
     </form>
   );
