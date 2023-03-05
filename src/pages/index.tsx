@@ -22,7 +22,6 @@ const Home: NextPage = () => {
       <main className="px-4 py-2">
         <header className="flex items-center justify-between border-b border-slate-500 pb-2">
           <h2>River</h2>
-          <ModeToggle />
           <Button onClick={() => signIn()}>Sign in</Button>
         </header>
         <div className="px-28">
