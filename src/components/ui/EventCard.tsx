@@ -22,8 +22,8 @@ interface cardProps {
 const EventCard = (props: cardProps) => {
   return (
     <div className="w-full rounded-md border-b py-4">
-      <div className="flex scroll-m-20 justify-between align-middle text-xl tracking-tight">
-        <h2 className="">{props.name}</h2>
+      <div className="grid scroll-m-20 grid-cols-4 justify-between align-middle text-xl tracking-tight">
+        <h2 className="w-36">{props.name}</h2>
         <h2 className="">{`${props.views}`} views</h2>
         <h2 className="">{props.count} RSVPs</h2>
         <Link
