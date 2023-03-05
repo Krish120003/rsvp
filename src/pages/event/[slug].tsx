@@ -16,6 +16,8 @@ import BG from "../../components/BG.svg";
 import LOCATION from "../../components/location_icon.svg";
 import TIME from "../../components/time_icon.svg";
 import DATE from "../../components/date_icon.svg";
+import { api } from "@/utils/api";
+import { cn } from "@/lib/utils";
 
 interface EventDetailsProps {
   name: string;
@@ -191,8 +193,21 @@ interface RSVPFormData {
 }
 
 const EventPage: NextPage<EventPageProps> = (props) => {
-  const { register, handleSubmit } = useForm<RSVPFormData>();
-  const onSubmit: SubmitHandler<RSVPFormData> = (data) => console.log(data);
+  const { register, handleSubmit, watch } = useForm<RSVPFormData>();
+
+  const submittedName = watch("name");
+
+  const { mutateAsync, isIdle, isLoading, isSuccess } =
+    api.events.rsvp.useMutation();
+
+  const onSubmit: SubmitHandler<RSVPFormData> = async (data) => {
+    console.log(data);
+    await mutateAsync({
+      name: data.name,
+      email: data.email,
+      slug: props.event.slug,
+    });
+  };
 
   const dateString = `${props.event.startTime.toLocaleString("en-us", {
     day: "numeric",
@@ -239,31 +254,58 @@ const EventPage: NextPage<EventPageProps> = (props) => {
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <div className="w-md max-w-md p-4">
-            <h1 className="text-4xl font-bold">RSVP</h1>
-            <p className="text-md text-slate-500">
-              Please enter your information to register for this event.
-            </p>
-            <div className="py-4">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="John Doe"
-                  {...register("name")}
-                />
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="example@email.com"
-                  {...register("email")}
-                />
-                <Button type="submit" className="mt-4 w-full">
-                  RSVP
-                </Button>
-              </form>
+          <div className="w-md relative max-w-md p-4">
+            <div
+              className={cn([
+                "w-full opacity-100 transition-all",
+                (isLoading || isSuccess) && "opacity-0",
+              ])}
+            >
+              <h1 className="text-4xl font-bold">RSVP</h1>
+              <p className="text-md text-slate-500">
+                Please enter your information to register for this event.
+              </p>
+              <div className="py-4">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <Label htmlFor="name">Name</Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="John Doe"
+                    {...register("name")}
+                  />
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="example@email.com"
+                    {...register("email")}
+                  />
+                  <Button type="submit" className="mt-4 w-full">
+                    RSVP
+                  </Button>
+                </form>
+              </div>
+            </div>
+            <div
+              className={cn([
+                "absolute top-1/2 left-1/2 w-full -translate-x-[50%] -translate-y-1/2 scale-75 text-center opacity-0 transition-all ",
+                isLoading && "scale-100 opacity-100",
+              ])}
+            >
+              <h1 className="animate-pulse text-2xl font-bold ">
+                Processing Your RSVP
+              </h1>
+            </div>
+            <div
+              className={cn([
+                "absolute top-1/2 left-1/2 w-full -translate-x-[50%] -translate-y-1/2 scale-75 text-center opacity-0 transition-all",
+                isSuccess && "scale-100 opacity-100",
+              ])}
+            >
+              <h1 className="text-2xl font-bold ">
+                <Balancer>You are RSVPed, {submittedName}!</Balancer>
+              </h1>
             </div>
           </div>
         </div>
