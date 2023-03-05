@@ -21,7 +21,7 @@ const Home: NextPage = () => {
       </Head>
       <main className="px-4 py-2">
         <header className="flex items-center justify-between border-b border-slate-500 pb-2">
-          <a href="/">River</a>
+          <p>River</p>
           <Button onClick={() => signIn()}>Sign in</Button>
         </header>
         <div className="px-28">
