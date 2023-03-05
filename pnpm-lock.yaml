@@ -24,6 +24,7 @@ specifiers:
   lucide-react: ^0.121.0
   next: ^13.2.1
   next-auth: ^4.19.0
+  next-superjson-plugin: ^0.5.6
   next-themes: ^0.2.1
   postcss: ^8.4.14
   prettier: ^2.8.1
@@ -53,6 +54,7 @@ dependencies:
   lucide-react: 0.121.0_react@18.2.0
   next: 13.2.3_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.20.1_nvzgbose6yf6w7ijjprgspqefi
+  next-superjson-plugin: 0.5.6_eskw3osmyhfnln5giftcgeeeum
   next-themes: 0.2.1_nvzgbose6yf6w7ijjprgspqefi
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1983,6 +1985,12 @@ packages:
     dependencies:
       function-bind: 1.1.1
 
+  /hoist-non-react-statics/3.3.2:
+    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
+    dependencies:
+      react-is: 16.13.1
+    dev: false
+
   /ignore/5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
@@ -2359,6 +2367,17 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       uuid: 8.3.2
+    dev: false
+
+  /next-superjson-plugin/0.5.6_eskw3osmyhfnln5giftcgeeeum:
+    resolution: {integrity: sha512-vokzkgtr3axon5uXobhXJWN6/YlPOHdcAb/BeR+d0rXA3h1b5h98A+V0TgMUf+vcy9RvBqte/ppaJfkOwi4NGA==}
+    peerDependencies:
+      next: ^13
+      superjson: ^1
+    dependencies:
+      hoist-non-react-statics: 3.3.2
+      next: 13.2.3_biqbaboplfbrettd7655fr4n2y
+      superjson: 1.9.1
     dev: false
 
   /next-themes/0.2.1_nvzgbose6yf6w7ijjprgspqefi:
@@ -2803,7 +2822,6 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-    dev: true
 
   /react-remove-scroll-bar/2.3.4_pmekkgnqduwlme35zpnqhenc34:
     resolution: {integrity: sha512-63C4YQBUt0m6ALadE9XV56hV8BgJWDmmTPY758iIJjfQKt2nYwoUrPk0LXRXcB/yIj82T1/Ixfdpdk68LwIB0A==}
