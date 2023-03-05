@@ -4,7 +4,7 @@ interface Attendee {
   name: string;
   email: string;
   confirmationCode: string;
-  confirmed: Boolean;
+  confirmed: boolean;
   event: Event;
 }
 
@@ -17,7 +17,7 @@ interface cardProps {
 const EventCard = (props: cardProps) => {
   return (
     <div className="w-full rounded-md bg-[#dadada] px-4 py-4">
-      <div className="flex justify-between px-4 text-xl tracking-tight align-middle scroll-m-20">
+      <div className="flex scroll-m-20 justify-between px-4 align-middle text-xl tracking-tight">
         <h2 className="">{props.name}</h2>
         <h2 className="">10 views</h2>
         <h2 className="">{props.count} RSVPs</h2>

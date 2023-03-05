@@ -10,7 +10,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/AlertDialog";
 import { Button } from "@/components/ui/Button";
-import Form from "@/components/Form";
+import Form from "@/components/CreateForm";
 
 const AlertDialogEvent = () => (
   <AlertDialog>
