@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/Button";
 import { ModeToggle } from "@/components/mode-toggle";
 import EventCard from "@/components/ui/EventCard";
 import { api } from "@/utils/api";
+import AlertDialogEvent from "@/components/ui/AlertDialogEvent";
+import { useState } from "react";
 
 const Dashboard: NextPage = () => {
   const { data: session } = useSession();
@@ -25,15 +27,15 @@ const Dashboard: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="w-full px-4 py-2">
-        <header className="flex items-center justify-between pb-2 border-b border-slate-500">
-          <h2>River</h2>
-          <Button onClick={() => signIn()}>Create Event</Button>
+        <header className="flex items-center justify-between border-b border-slate-500 pb-2">
+          <Link href="/">River</Link>
+          <AlertDialogEvent />
         </header>
-        <div className="w-full px-8 py-4 h-max">
-          <h1 className="pt-6 text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-5xl">
+        <div className="h-max w-full px-8 py-4">
+          <h1 className="scroll-m-20 pt-6 text-4xl font-extrabold tracking-tight lg:text-5xl">
             Your Events
           </h1>
-          <p className="w-full py-2 text-xl flex-box text-slate-700 dark:text-slate-400">
+          <p className="flex-box w-full py-2 text-xl text-slate-700 dark:text-slate-400">
             Welcome to your event dashboard. View your current, drafted, and
             archived events.
           </p>

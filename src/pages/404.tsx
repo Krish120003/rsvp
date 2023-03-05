@@ -18,7 +18,7 @@ const Dashboard: NextPage = () => {
         <div className="flex flex-col items-center justify-center">
           <Image
             src="/assets/404-error.svg"
-            alt="diznutz"
+            alt="snail having an error"
             width={500}
             height={500}
           ></Image>
