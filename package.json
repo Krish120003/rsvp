@@ -36,6 +36,7 @@
     "superjson": "1.9.1",
     "tailwind-merge": "^1.10.0",
     "tailwindcss-animate": "^1.0.5",
+    "trpc-panel": "^1.2.8",
     "zod": "^3.20.6"
   },
   "devDependencies": {

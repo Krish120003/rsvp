@@ -12,6 +12,8 @@ import { Icons } from "@/components/icons";
 import Image from "next/image";
 
 const Home: NextPage = () => {
+  const { status } = useSession();
+
   return (
     <>
       <Head>
@@ -21,9 +23,23 @@ const Home: NextPage = () => {
       </Head>
       <main className="px-4 py-2">
         <header className="flex items-center justify-between border-b border-slate-500 pb-2">
-          <Link href="/">River</Link>
-          <ModeToggle />
-          <Button onClick={() => signIn()}>Sign in</Button>
+          <p>River</p>
+
+          {status === "authenticated" ? (
+            <Link href={"/dashboard"}>
+              <Button>Dashboard</Button>
+            </Link>
+          ) : (
+            <Button
+              onClick={() => {
+                signIn(undefined, {
+                  callbackUrl: "/dashboard",
+                });
+              }}
+            >
+              Sign In
+            </Button>
+          )}
         </header>
         <div className="px-28">
           <Image

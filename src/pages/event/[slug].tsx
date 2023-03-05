@@ -24,9 +24,7 @@ const EventPage: NextPage<EventPageProps> = (props) => {
 export default EventPage;
 
 // Server-side rendering
-export const getServerSideProps: GetServerSideProps<{
-  props: EventPageProps;
-}> = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!context.params) {
     return {
       notFound: true,
@@ -46,6 +44,7 @@ export const getServerSideProps: GetServerSideProps<{
     startTime: new Date(),
     location: "Test Location",
     image: "https://picsum.photos/200",
+    status: "ACTIVE",
   };
 
   return {
