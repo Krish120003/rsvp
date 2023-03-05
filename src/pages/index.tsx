@@ -12,6 +12,8 @@ import { Icons } from "@/components/icons";
 import Image from "next/image";
 
 const Home: NextPage = () => {
+  const { status } = useSession();
+
   return (
     <>
       <Head>
@@ -22,15 +24,22 @@ const Home: NextPage = () => {
       <main className="px-4 py-2">
         <header className="flex items-center justify-between border-b border-slate-500 pb-2">
           <p>River</p>
-          <Button
-            onClick={async () => {
-              const signInActionResult = await signIn(undefined, {
-                callbackUrl: "/dashboard",
-              });
-            }}
-          >
-            Sign in
-          </Button>
+
+          {status === "authenticated" ? (
+            <Link href={"/dashboard"}>
+              <Button>Dashboard</Button>
+            </Link>
+          ) : (
+            <Button
+              onClick={async () => {
+                const signInActionResult = await signIn(undefined, {
+                  callbackUrl: "/dashboard",
+                });
+              }}
+            >
+              Sign In
+            </Button>
+          )}
         </header>
         <div className="px-28">
           <Image
