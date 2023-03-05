@@ -343,6 +343,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  await prisma.event.update({
+    where: {
+      id: event.id,
+    },
+    data: {
+      views: {
+        increment: 1,
+      },
+    },
+  });
+
   const reshapedEvent: EventDetails = {
     name: event.name,
     description: event.description,

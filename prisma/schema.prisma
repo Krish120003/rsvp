@@ -75,6 +75,7 @@ model Event {
     updatedAt   DateTime   @updatedAt
     attendees   Attendee[]
     creator     User       @relation(fields: [creatorId], references: [id])
+    views       Int        @default(0)
 }
 
 model Attendee {
