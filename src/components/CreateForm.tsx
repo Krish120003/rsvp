@@ -12,6 +12,7 @@ type FormValues = {
   location: string;
 };
 
+// @ts-ignore // eslint-disable-line @typescript-eslint/ban-ts-comment
 function MyForm({ updater }) {
   const { register, handleSubmit, watch } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);

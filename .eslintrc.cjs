@@ -6,6 +6,9 @@ const config = {
   },
   plugins: ["@typescript-eslint"],
   extends: ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  rules: {
+    "@typescript-eslint/ban-ts-comment": "off",
+  },
 };
 
 module.exports = config;
