@@ -22,7 +22,15 @@ const Home: NextPage = () => {
       <main className="px-4 py-2">
         <header className="flex items-center justify-between border-b border-slate-500 pb-2">
           <p>River</p>
-          <Button onClick={() => signIn()}>Sign in</Button>
+          <Button
+            onClick={async () => {
+              const signInActionResult = await signIn(undefined, {
+                callbackUrl: "/dashboard",
+              });
+            }}
+          >
+            Sign in
+          </Button>
         </header>
         <div className="px-28">
           <Image

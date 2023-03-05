@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 import { api } from "@/utils/api";
 
 import "@/styles/globals.css";
+import { ModeToggle } from "@/components/mode-toggle";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -14,6 +15,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <SessionProvider session={session}>
       <ThemeProvider>
         <Component {...pageProps} />
+        <div className="absolute bottom-0 right-0 p-4">
+          <ModeToggle />
+        </div>
       </ThemeProvider>
     </SessionProvider>
   );
