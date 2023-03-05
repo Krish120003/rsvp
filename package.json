@@ -28,7 +28,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-wrap-balancer": "^0.4.0",
-    "superjson": "1.9.1",
+    "superjson": "1.12.2",
     "tailwind-merge": "^1.10.0",
     "tailwindcss-animate": "^1.0.5",
     "zod": "^3.20.6"
