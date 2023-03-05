@@ -12,13 +12,31 @@ import { api } from "@/utils/api";
 import AlertDialogEvent from "@/components/ui/AlertDialogEvent";
 import { useState } from "react";
 
+const NoEvents: React.FC = () => {
+  return (
+    <p className="flex-box w-full justify-center pt-4 pb-4 text-center align-middle text-xl text-[#6F6F6F] dark:text-slate-400">
+      You do not have any events right now. Create one to get started.
+    </p>
+  );
+};
+
 const Dashboard: NextPage = () => {
   const { data: session } = useSession();
   const { data: events } = api.events.list.useQuery();
 
   console.log(events);
 
-  const userEvents = [];
+  const eventCards = events?.map((event) => {
+    return (
+      <EventCard
+        key={event.id}
+        name={event.name}
+        description={event.description}
+        count={event._count.attendees}
+      />
+    );
+  });
+  //
   return (
     <>
       <Head>
@@ -27,29 +45,19 @@ const Dashboard: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="w-full px-4 py-2">
-        <header className="flex items-center justify-between border-b border-slate-500 pb-2">
+        <header className="flex items-center justify-between pb-2 border-b border-slate-500">
           <Link href="/">River</Link>
           <AlertDialogEvent />
         </header>
-        <div className="h-max w-full px-8 py-4">
-          <h1 className="scroll-m-20 pt-6 text-4xl font-extrabold tracking-tight lg:text-5xl">
+        <div className="w-full px-8 py-4 h-max">
+          <h1 className="pt-6 text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-5xl">
             Your Events
           </h1>
-          <p className="flex-box w-full py-2 text-xl text-slate-700 dark:text-slate-400">
+          <p className="w-full py-2 text-xl flex-box text-slate-700 dark:text-slate-400">
             Welcome to your event dashboard. View your current, drafted, and
             archived events.
           </p>
-          <div className="py-8">
-            <EventCard
-              name="Bell Event 1"
-              description="Bell Internship Networking Event"
-              image="TBA"
-              attendees={[]}
-            />
-            <p className="flex-box w-full justify-center pt-4 pb-4 text-center align-middle text-xl text-[#6F6F6F] dark:text-slate-400">
-              You do not have any events right now. Create one to get started.
-            </p>
-          </div>
+          <div className="py-8">{events ? eventCards : <NoEvents />}</div>
         </div>
       </main>
     </>

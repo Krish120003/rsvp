@@ -21,6 +21,7 @@ export const eventsRouter = createTRPCRouter({
           location: input.location,
           slug: input.slug,
           startTime: input.startTime,
+          endTime: input.startTime,
           creatorId: ctx.session.user.id,
         },
       });
@@ -38,6 +39,8 @@ export const eventsRouter = createTRPCRouter({
         },
       },
     });
+
+    console.log(data);
 
     return data;
   }),

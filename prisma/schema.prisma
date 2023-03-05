@@ -66,7 +66,7 @@ model Event {
     description String
     status      String     @default("DRAFT")
     startTime   DateTime
-    endTime     DateTime?
+    endTime     DateTime
     location    String
     image       String?
     slug        String     @unique
