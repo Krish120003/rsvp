@@ -20,7 +20,6 @@ const Dashboard: NextPage = () => {
       <main className="w-full px-4 py-2">
         <header className="flex items-center justify-between border-b border-slate-500 pb-2">
           <h2>River</h2>
-          <ModeToggle />
           <Button onClick={() => signIn()}>Create Event</Button>
         </header>
         <div className="h-max w-full px-8 py-4">
