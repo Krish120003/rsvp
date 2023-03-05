@@ -31,8 +31,8 @@ const Home: NextPage = () => {
             </Link>
           ) : (
             <Button
-              onClick={async () => {
-                const signInActionResult = await signIn(undefined, {
+              onClick={() => {
+                signIn(undefined, {
                   callbackUrl: "/dashboard",
                 });
               }}
