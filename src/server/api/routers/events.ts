@@ -44,4 +44,34 @@ export const eventsRouter = createTRPCRouter({
 
     return data;
   }),
+
+  rsvp: publicProcedure
+    .input(
+      z.object({
+        slug: z.string(),
+        name: z.string(),
+        email: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const event = await ctx.prisma.event.findUnique({
+        where: {
+          slug: input.slug,
+        },
+      });
+
+      if (!event) {
+        throw new Error("Event not found");
+      }
+
+      await ctx.prisma.attendee.create({
+        data: {
+          name: input.name,
+          email: input.email,
+          eventId: event.id,
+        },
+      });
+
+      return "Success";
+    }),
 });
