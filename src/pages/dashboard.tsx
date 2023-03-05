@@ -8,9 +8,11 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { ModeToggle } from "@/components/mode-toggle";
 import EventCard from "@/components/ui/EventCard";
+import { api } from "@/utils/api";
 
 const Dashboard: NextPage = () => {
   const { data: session } = useSession();
+
   return (
     <>
       <Head>
