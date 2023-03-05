@@ -18,10 +18,10 @@ interface cardProps {
 const EventCard = (props: cardProps) => {
   const rsvps = props.attendees.length;
   return (
-    <div className="w-full bg-[#dadada] px-4 py-8">
+    <div className="w-full rounded-md bg-[#dadada] px-4 py-4">
       <div className="flex scroll-m-20 justify-between px-4 align-middle text-xl tracking-tight">
         <h2 className="">{props.name}</h2>
-        <h2 className="">{props.description}</h2>
+        <h2 className="">10 views</h2>
         <h2 className="">{rsvps} RSVPs</h2>
         <h2 className="">{props.description}</h2>
       </div>

@@ -33,9 +33,9 @@ const Dashboard: NextPage = () => {
           </p>
           <div className="py-8">
             <EventCard
-              name="string"
-              description="EE"
-              image="S"
+              name="Bell Event 1"
+              description="Bell Internship Networking Event"
+              image="TBA"
               attendees={[]}
             />
             <p className="flex-box w-full justify-center pt-4 pb-4 text-center align-middle text-xl text-[#6F6F6F] dark:text-slate-400">
