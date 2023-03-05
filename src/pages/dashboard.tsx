@@ -8,19 +8,8 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { ModeToggle } from "@/components/mode-toggle";
 // import { Event } from "@/components/ui/Event";
-
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-
+import AlertDialogEvent from "@/components/ui/AlertDialogEvent";
+import { useState } from "react";
 
 const Dashboard: NextPage = () => {
   return (
@@ -32,9 +21,9 @@ const Dashboard: NextPage = () => {
       </Head>
       <main className="w-full px-4 py-2">
         <header className="flex items-center justify-between border-b border-slate-500 pb-2">
-          <h2>River</h2>
+          <Link href="/">River</Link>
           <ModeToggle />
-          <Button onClick={() => }>Create Event</Button>
+          <AlertDialogEvent />
         </header>
         <div className="h-max w-full px-8 py-4">
           <h1 className="text-2xld pt-6 font-bold lg:text-4xl">Your Events</h1>
