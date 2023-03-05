@@ -1,24 +1,29 @@
-import { type NextPage } from "next";
-import Head from "next/head";
-import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
-import Balancer from "react-wrap-balancer";
-
-import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
-import { ModeToggle } from "@/components/mode-toggle";
-
-const Event: NextPage = () => {
+interface Attendee {
+  id: String;
+  eventId: String;
+  name: String;
+  email: String;
+  confirmationCode: String;
+  confirmed: Boolean;
+  event: Event;
+}
+const EventCard = (
+  name: String,
+  description: String,
+  image: String,
+  attendees: Attendee[]
+) => {
+  const rsvps = attendees.length;
   return (
-    <>
-      <div className="w-full bg-[#D9D9D9] px-4 py-2">
-        <h2>Event Name</h2>
-        <h2>X Views</h2>
-        <h2>X RSVPs</h2>
-        <h2>Desc</h2>
+    <div className="w-full bg-[#a26b6b] px-4 py-8">
+      <div className="flex scroll-m-20 justify-between px-4 align-middle text-xl tracking-tight">
+        <h2 className="">Event Name {name}</h2>
+        <h2 className="">X Views{description}</h2>
+        <h2 className="">X RSVPs{rsvps}</h2>
+        <h2 className="">Desc{description}</h2>
       </div>
-    </>
+    </div>
   );
 };
 
-export default Event;
+export default EventCard;
