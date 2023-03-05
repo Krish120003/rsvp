@@ -26,21 +26,18 @@ export const eventsRouter = createTRPCRouter({
                 }
             }
         );
-
       return "Success"
     }),
 
-    get: publicProcedure.input(z.string()).query(async ({input: slug, ctx}) => {
-        return await ctx.prisma.event.findUniqueOrThrow({
-            where: {
-                slug: slug
-            }
-        })
-    })
-
-
-
-
-
-    
+    list: protectedProcedure.query(
+        async ({ ctx }) => {
+            return await ctx.prisma.event.findMany(
+                {
+                    where: {
+                        creatorId: ctx.session.user.id
+                    }
+                }
+            );
+        }
+    )
 });
