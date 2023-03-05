@@ -10,9 +10,12 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { Icons } from "@/components/icons";
 
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
   const { status } = useSession();
+
+  const router = useRouter();
 
   return (
     <>
@@ -67,7 +70,17 @@ const Home: NextPage = () => {
               events.
             </Balancer>
           </p>
-          <Button onClick={() => signIn()}>Get Started</Button>
+          <Button
+            onClick={async () => {
+              if (status === "authenticated") {
+                router.push("/dashboard");
+              } else {
+                await signIn();
+              }
+            }}
+          >
+            Get Started
+          </Button>
         </div>
       </main>
     </>
