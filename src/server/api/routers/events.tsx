@@ -5,8 +5,10 @@ import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 import { createId } from "@paralleldrive/cuid2";
 
 import { Resend } from "resend";
+import { env } from "@/env.mjs";
+
 import ConfrimRSVP from "@/components/email/ConfirmRSVP";
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(env.RESEND_API_KEY);
 
 export const eventsRouter = createTRPCRouter({
   create: protectedProcedure
@@ -82,7 +84,7 @@ export const eventsRouter = createTRPCRouter({
       });
 
       const emailData = await resend.sendEmail({
-        from: "from@example.com",
+        from: "rsvp@bundl3.tech",
         to: input.email,
         subject: "Confirm your RSVP",
         react: <ConfrimRSVP />,
