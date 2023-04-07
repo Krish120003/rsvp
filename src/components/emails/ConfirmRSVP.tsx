@@ -1,5 +1,11 @@
 import React from "react";
 
+interface ConfrimRSVPProps {
+  confirmationCode: string;
+  eventName: string;
+  name: string;
+}
+
 const ConfrimRSVP = () => {
   return (
     <div>
