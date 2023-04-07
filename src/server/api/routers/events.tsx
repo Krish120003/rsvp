@@ -86,7 +86,7 @@ export const eventsRouter = createTRPCRouter({
       const emailData = await resend.sendEmail({
         from: "rsvp@bundl3.tech",
         to: input.email,
-        subject: "Confirm your RSVP",
+        subject: "Confirm your RSVP to " + event.name,
         react: <ConfrimRSVP />,
       });
 
