@@ -2,6 +2,12 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 
+import { createId } from "@paralleldrive/cuid2";
+
+import { Resend } from "resend";
+import ConfrimRSVP from "@/components/email/ConfirmRSVP";
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export const eventsRouter = createTRPCRouter({
   create: protectedProcedure
     .input(
@@ -64,14 +70,24 @@ export const eventsRouter = createTRPCRouter({
         throw new Error("Event not found");
       }
 
+      const confirmationCode = createId();
+
       await ctx.prisma.attendee.create({
         data: {
           name: input.name,
           email: input.email,
           eventId: event.id,
+          confirmationCode: confirmationCode,
         },
       });
 
-      return "Success";
+      const emailData = await resend.sendEmail({
+        from: "from@example.com",
+        to: input.email,
+        subject: "Confirm your RSVP",
+        react: <ConfrimRSVP />,
+      });
+
+      return;
     }),
 });
