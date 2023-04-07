@@ -7,7 +7,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { Resend } from "resend";
 import { env } from "@/env.mjs";
 
-import ConfrimRSVP from "@/components/email/ConfirmRSVP";
+import ConfrimRSVP from "@/components/emails/ConfirmRSVP";
 const resend = new Resend(env.RESEND_API_KEY);
 
 export const eventsRouter = createTRPCRouter({
