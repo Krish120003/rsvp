@@ -318,6 +318,8 @@ export default EventPage;
 
 // Server-side rendering
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  context.res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");
+
   if (!context.params) {
     return {
       notFound: true,
