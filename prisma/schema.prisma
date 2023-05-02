@@ -83,7 +83,7 @@ model Attendee {
     eventId          String
     name             String
     email            String
-    confirmationCode String  @unique @default(cuid())
+    confirmationCode String  @default(cuid())
     confirmed        Boolean @default(false)
     event            Event   @relation(fields: [eventId], references: [id])
 }

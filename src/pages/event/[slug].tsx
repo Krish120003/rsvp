@@ -303,12 +303,9 @@ const EventPage: NextPage<EventPageProps> = (props) => {
                 isSuccess && "scale-100 opacity-100",
               ])}
             >
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-2xl font-bold ">
                 <Balancer>You are RSVPed, {submittedName}!</Balancer>
               </h1>
-              <p className="text-center">
-                Please check your email for a confirmation.
-              </p>
             </div>
           </div>
         </div>
