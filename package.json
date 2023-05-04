@@ -43,7 +43,7 @@
     "react-email": "1.9.1",
     "react-hook-form": "^7.43.4",
     "react-wrap-balancer": "^0.4.0",
-    "resend": "^0.12.2",
+    "resend": "^0.13.0",
     "superjson": "1.9.1",
     "tailwind-merge": "^1.10.0",
     "tailwindcss-animate": "^1.0.5",
