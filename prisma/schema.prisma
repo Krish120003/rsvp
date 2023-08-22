@@ -6,12 +6,18 @@ generator client {
 }
 
 datasource db {
-    provider = "postgresql"
-    // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
+    provider = "sqlite"
+    // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
     // Further reading:
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url      = env("DATABASE_URL")
+}
+
+model Example {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 // Necessary for Next auth
@@ -21,12 +27,12 @@ model Account {
     type              String
     provider          String
     providerAccountId String
-    refresh_token     String? @db.Text
-    access_token      String? @db.Text
+    refresh_token     String? // @db.Text
+    access_token      String? // @db.Text
     expires_at        Int?
     token_type        String?
     scope             String?
-    id_token          String? @db.Text
+    id_token          String? // @db.Text
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -49,7 +55,6 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    Event         Event[]
 }
 
 model VerificationToken {
@@ -58,32 +63,4 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
-}
-
-model Event {
-    id          String     @id @unique @default(cuid())
-    name        String
-    description String
-    status      String     @default("DRAFT")
-    startTime   DateTime
-    endTime     DateTime
-    location    String
-    image       String?
-    slug        String     @unique
-    creatorId   String
-    createdAt   DateTime   @default(now())
-    updatedAt   DateTime   @updatedAt
-    attendees   Attendee[]
-    creator     User       @relation(fields: [creatorId], references: [id])
-    views       Int        @default(0)
-}
-
-model Attendee {
-    id               String  @id @default(cuid())
-    eventId          String
-    name             String
-    email            String
-    confirmationCode String  @unique @default(cuid())
-    confirmed        Boolean @default(false)
-    event            Event   @relation(fields: [eventId], references: [id])
 }
